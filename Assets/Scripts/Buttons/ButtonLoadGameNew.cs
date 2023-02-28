@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class ButtonStart : MonoBehaviour
+
+public class ButtonLoadGameNew : MonoBehaviour
 {
     private Button _button;
 
@@ -14,5 +15,5 @@ public class ButtonStart : MonoBehaviour
 
     private void Awake() => _button = GetComponent<Button>();
 
-    private void OnButtonClick() => SceneManager.LoadScene("MenuScene");
+    private void OnButtonClick() => SceneManager.LoadScene("LevelScene");
 }
