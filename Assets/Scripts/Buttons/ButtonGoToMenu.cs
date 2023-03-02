@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class ButtonStart : MonoBehaviour
+public class ButtonGoToMenu : MonoBehaviour
 {
     private Button _button;
 
