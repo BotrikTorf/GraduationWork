@@ -1,1 +1,0 @@
-public class Paseidon : God { }

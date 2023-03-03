@@ -1,35 +1,34 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StageLogicGod : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _gods;
+    [SerializeField] private List<God> _gods;
     [SerializeField] private Button _buttonArrowBack;
     [SerializeField] private Button _buttonArrowForward;
     [SerializeField] private Button _buttonImprovementSpell;
     [SerializeField] private Button _buttonImprovementTime;
+    [SerializeField] private Button _buttonGoToMenu;
     [SerializeField] private Slider _sliderSpell;
     [SerializeField] private Slider _sliderTime;
+    [SerializeField] private TMP_Text _nameGod;
+    [SerializeField] private Image _imageGod;
 
-    private God _god;
-    private GameObject _activeGod;
     private int _numberGod;
 
     private void Awake()
     {
-        if (_activeGod == null)
-        {
-            for (int i = 0; i < _gods.Count; i++)
-                _gods[i].SetActive(false);
+        _numberGod = 0;
 
-            _numberGod = 0;
-            _activeGod = _gods[_numberGod];
+        for (int i = 0; i < _gods.Count; i++)
+            if (PlayerPrefs.HasKey("ActiveGod"))
+                if (_gods[i].Name == PlayerPrefs.GetString("ActiveGod"))
+                    _numberGod = i;
 
-            if (_activeGod.TryGetComponent(out God god))
-                _god = god;
-        }
+        ChangesGod();
     }
 
     private void OnEnable()
@@ -38,6 +37,7 @@ public class StageLogicGod : MonoBehaviour
         _buttonArrowForward.onClick.AddListener(OnButtonClickForward);
         _buttonImprovementSpell.onClick.AddListener(OnButtonClickImprovementSpell);
         _buttonImprovementTime.onClick.AddListener(OnButtonClickImprovementTime);
+        _buttonGoToMenu.onClick.AddListener(OnButtonClickGoToMenu);
     }
 
 
@@ -47,9 +47,8 @@ public class StageLogicGod : MonoBehaviour
         _buttonArrowForward.onClick.RemoveListener(OnButtonClickForward);
         _buttonImprovementSpell.onClick.RemoveListener(OnButtonClickImprovementSpell);
         _buttonImprovementTime.onClick.RemoveListener(OnButtonClickImprovementTime);
+        _buttonGoToMenu.onClick.RemoveListener(OnButtonClickGoToMenu);
     }
-
-    private void Start() => ChangesGod(_numberGod);
 
     private void OnButtonClickBack()
     {
@@ -58,7 +57,7 @@ public class StageLogicGod : MonoBehaviour
         if (_numberGod < 0)
             _numberGod = _gods.Count - 1;
 
-        ChangesGod(_numberGod);
+        ChangesGod();
     }
 
     private void OnButtonClickForward()
@@ -68,42 +67,37 @@ public class StageLogicGod : MonoBehaviour
         if (_numberGod > _gods.Count - 1)
             _numberGod = 0;
 
-        ChangesGod(_numberGod);
+        ChangesGod();
     }
 
     private void OnButtonClickImprovementSpell()
     {
-        _god.IncreaseDamage();
+        _gods[_numberGod].IncreaseDamage();
         ChangeSlider();
     }
 
     private void OnButtonClickImprovementTime()
     {
-        _god.ReduceTime();
+        _gods[_numberGod].ReduceTime();
         ChangeSlider();
     }
 
-    private void ChangesGod(int number)
+    private void OnButtonClickGoToMenu()
     {
-        _activeGod.SetActive(false);
+        PlayerPrefs.SetString("ActiveGod", _gods[_numberGod].Name);
+        SceneManager.LoadScene("MenuScene");
+    }
 
-        if (number >= 0 && number < _gods.Count)
-        {
-            _activeGod = _gods[number];
-
-            if (_activeGod.TryGetComponent(out God god))
-                _god = god;
-
-            _activeGod.SetActive(true);
-            ChangeSlider();
-        }
-
-        Debug.Log(_god);
+    private void ChangesGod()
+    {
+        _nameGod.text = _gods[_numberGod].Name;
+        _imageGod.sprite = _gods[_numberGod].Image;
+        ChangeSlider();
     }
 
     private void ChangeSlider()
     {
-        _sliderSpell.value = (float)_god.SpellPower / _god.MaxValue;
-        _sliderTime.value = (float)_god.RecycleTimeFactor / _god.MaxValue;
+        _sliderSpell.value = (float)_gods[_numberGod].SpellPower / _gods[_numberGod].MaxValue;
+        _sliderTime.value = (float)_gods[_numberGod].RecycleTimeFactor / _gods[_numberGod].MaxValue;
     }
 }
