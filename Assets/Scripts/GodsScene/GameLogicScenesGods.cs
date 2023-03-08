@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StageLogicGod : MonoBehaviour
+public class GameLogicScenesGods : MonoBehaviour
 {
     [SerializeField] private List<God> _gods;
     [SerializeField] private Button _buttonArrowBack;
