@@ -24,35 +24,29 @@ public class God : ScriptableObject
     public int SpellPower => PlayerPrefs.HasKey($"{_name}SpellPower")
         ? PlayerPrefs.GetInt($"{_name}SpellPower")
         : 0;
-    public int Damage { get; private set; }
-    public float RechargeTime { get; private set; }
+    public int Damage => _damage + (int)(_damage * ((float)_spellPower / MaxValue));
+    public float RechargeTime => _rechargeTime - _rechargeTime * (_recycleTimeFactor / MaxValue) * 0.5f;
     public int MaxValue => 10;
 
     private void Awake()
     {
-        Damage = _damage + (int)(_damage * ((float)_spellPower / MaxValue));
-        RechargeTime = _rechargeTime - _rechargeTime * (_recycleTimeFactor / MaxValue) * 0.5f;
+        _spellPower = SpellPower;
+        _recycleTimeFactor = RecycleTimeFactor;
     }
 
     public void IncreaseDamage()
     {
-        _spellPower = SpellPower;
-
         if (_spellPower < MaxValue)
             _spellPower++;
 
-        Damage = _damage + (int)(_damage * ((float)_spellPower / MaxValue));
         PlayerPrefs.SetInt($"{_name}SpellPower", _spellPower);
     }
 
     public void ReduceTime()
     {
-        _recycleTimeFactor = RecycleTimeFactor;
-
         if (_recycleTimeFactor < MaxValue)
             _recycleTimeFactor++;
 
-        RechargeTime = _rechargeTime - _rechargeTime * (_recycleTimeFactor / MaxValue) * 0.5f;
         PlayerPrefs.SetInt($"{_name}RecycleTimeFactor", _recycleTimeFactor);
     }
 }

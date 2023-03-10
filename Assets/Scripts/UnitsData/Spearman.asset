@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bcd7dce0185384468a298005891d844, type: 3}
+  m_Name: Spearman
+  m_EditorClassIdentifier: Assembly-CSharp::Unit
+  _name: Spearman
+  _spriteStartUnit: {fileID: 21300000, guid: 89557efa9f211e744b817d9569fc280c, type: 3}
+  _spriteEndUnit: {fileID: 21300000, guid: 5d7ceb28beefea341bb63d591755e7e3, type: 3}
+  _spritesImprovementLevel:
+  - {fileID: 21300000, guid: d1798bba608d49e48866b174e764c780, type: 3}
+  - {fileID: 21300000, guid: 59799c909044d7c4cae4a9c2868aec9b, type: 3}
+  - {fileID: 21300000, guid: 864af14608c9e5f479559c534d41bc09, type: 3}
+  - {fileID: 21300000, guid: 0bea5996c1d0e8a499685a22528edd2d, type: 3}
+  - {fileID: 21300000, guid: e9a4415d269995b44bbd850a6e9e4d11, type: 3}
+  _initialDamage: 60
+  _initialHealth: 200
