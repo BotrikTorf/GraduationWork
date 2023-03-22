@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: abac59cb0f4812f4fb024457b3ceb1ab, type: 3}
   _initialDamage: 75
   _initialHealth: 100
+  _armor: 5

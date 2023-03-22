@@ -9,6 +9,7 @@ public class UnitSO : ScriptableObject
     [SerializeField] private Sprite[] _spritesImprovementLevel;
     [SerializeField] private int _initialDamage;
     [SerializeField] private int _initialHealth;
+    [SerializeField] private int _armor;
 
     private int _improvementLevel;
 
@@ -22,6 +23,8 @@ public class UnitSO : ScriptableObject
     public int MaxImprovement => _spritesImprovementLevel.Length;
     public int Damage => (int)(_initialDamage + _initialDamage * ((float)(_improvementLevel + 1) / MaxImprovement));
     public int Health => (int)(_initialHealth + _initialHealth * ((float)(_improvementLevel + 1) / MaxImprovement));
+    public int Armor => _armor;
+
     private void Awake() => _improvementLevel = ImprovementLevel;
 
     public void UpgradeUnit()
