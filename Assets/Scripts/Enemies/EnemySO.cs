@@ -12,5 +12,4 @@ public class EnemySO : ScriptableObject
     public int Damage => _initialDamage;
     public int Health => _initialHealth;
     public int Armor => _armor;
-
 }

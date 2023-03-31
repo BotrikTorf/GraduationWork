@@ -15,8 +15,6 @@ public class PointTargetEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(_unit.name);
-
         if (collider.TryGetComponent(out UnitGame player))
         {
             if (_unit.IsPositivePlayer != player.IsPositivePlayer)
@@ -27,7 +25,7 @@ public class PointTargetEnemy : MonoBehaviour
 
         if (collider.TryGetComponent(out House house))
         {
-            if (_unit.IsPositivePlayer != house.IsPositiveHouse)
+            if (_unit.IsPositivePlayer != house.IsPositive)
             {
                 AddList(house.gameObject);
             }

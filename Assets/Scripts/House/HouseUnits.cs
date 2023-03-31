@@ -1,4 +1,3 @@
-
 public class HouseUnits : House
 {
     private void Start()
@@ -6,5 +5,8 @@ public class HouseUnits : House
         MaxHealth = 1000;
         Health = MaxHealth;
         IsPositive = true;
+        Money = 100;
     }
+
+    public override void AccrueMoney() => MoneyGame.AddMoney(Money);
 }

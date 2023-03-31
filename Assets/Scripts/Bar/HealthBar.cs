@@ -15,5 +15,4 @@ public class HealthBar : Bar
     }
 
     public override void OnSetActive() => SliderBar.gameObject.SetActive(true);
-
 }

@@ -8,14 +8,14 @@ public class UnitSwordman : UnitGamePositive
 
     private void Start()
     {
-        NamePlayer = _unitSo.Name;
-        DamagePlayer = _unitSo.Damage;
+        Name = _unitSo.Name;
+        Damage = _unitSo.Damage;
         MaxHealth = _unitSo.Health;
         Armor = _unitSo.Armor;
         Speed = 1;
         Health = MaxHealth;
         IsPositive = true;
-        AnimatorPlayer = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
         StateMachinePlayer = new StateMachine();
         StateMovePlayer = new StateMove(this);
         StateAttackPlayer = new StateAttack(this);
@@ -35,9 +35,9 @@ public class UnitSwordman : UnitGamePositive
     public override void TakeShot(GameObject target)
     {
         if (target.TryGetComponent(out UnitGame enemy))
-            enemy.TakeDamage(DamagePlayer);
+            enemy.TakeDamage(Damage);
 
         if (target.TryGetComponent(out House house))
-            house.TakeDamage(DamagePlayer);
+            house.TakeDamage(Damage);
     }
 }

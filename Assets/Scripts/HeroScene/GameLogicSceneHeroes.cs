@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameLogicSceneHeroes : MonoBehaviour
 {
@@ -12,8 +13,15 @@ public class GameLogicSceneHeroes : MonoBehaviour
     [SerializeField] private Slider _sliderAttackSpeed;
     [SerializeField] private Slider _sliderArmor;
     [SerializeField] private Slider _SliderHealth;
+    [SerializeField] private TMP_Text _upgradeAttackPower;
+    [SerializeField] private TMP_Text _upgradeAttackSpeed;
+    [SerializeField] private TMP_Text _upgradeArmor;
+    [SerializeField] private TMP_Text _upgradeHealth;
+    [SerializeField] private TMP_Text _amountMoney;
+
 
     private HeroSO _hero;
+    private int _initialUpgradeCost = 100;
 
     private void OnEnable()
     {
@@ -43,26 +51,38 @@ public class GameLogicSceneHeroes : MonoBehaviour
 
     private void OnButtonClickAttackPower()
     {
-        _hero.IncreaseDamageRatio();
-        ChangeSlider();
+        if (MoneyGame.CanReduceMoney(_hero.DamageRatio * _initialUpgradeCost + _initialUpgradeCost))
+        {
+            _hero.IncreaseDamageRatio();
+            ChangeSlider();
+        }
     }
 
     private void OnButtonClickAttackSpeed()
     {
-        _hero.IncreaseSpeedRatio();
-        ChangeSlider();
+        if (MoneyGame.CanReduceMoney(_hero.SpeedRatio * _initialUpgradeCost + _initialUpgradeCost))
+        {
+            _hero.IncreaseSpeedRatio();
+            ChangeSlider();
+        }
     }
 
     private void OnButtonClickArmor()
     {
-        _hero.IncreaseArmorFactor();
-        ChangeSlider();
+        if (MoneyGame.CanReduceMoney(_hero.ArmorFactor * _initialUpgradeCost + _initialUpgradeCost))
+        {
+            _hero.IncreaseArmorFactor();
+            ChangeSlider();
+        }
     }
 
     private void OnButtonClickHealth()
     {
-        _hero.IncreaseHealthFactor();
-        ChangeSlider();
+        if (MoneyGame.CanReduceMoney(_hero.HealthFactor * _initialUpgradeCost + _initialUpgradeCost))
+        {
+            _hero.IncreaseHealthFactor();
+            ChangeSlider();
+        }
     }
 
 
@@ -72,5 +92,10 @@ public class GameLogicSceneHeroes : MonoBehaviour
         _sliderAttackSpeed.value = (float)_hero.SpeedRatio / _hero.MaxValue;
         _sliderArmor.value = (float)_hero.ArmorFactor / _hero.MaxValue;
         _SliderHealth.value = (float)_hero.HealthFactor / _hero.MaxValue;
+        _upgradeAttackPower.text = (_hero.DamageRatio * _initialUpgradeCost + _initialUpgradeCost).ToString();
+        _upgradeAttackSpeed.text = (_hero.SpeedRatio * _initialUpgradeCost + _initialUpgradeCost).ToString();
+        _upgradeArmor.text = (_hero.ArmorFactor * _initialUpgradeCost + _initialUpgradeCost).ToString();
+        _upgradeHealth.text = (_hero.HealthFactor * _initialUpgradeCost + _initialUpgradeCost).ToString();
+        _amountMoney.text = MoneyGame.Money.ToString();
     }
 }

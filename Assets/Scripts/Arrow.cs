@@ -4,7 +4,8 @@ public class Arrow : MonoBehaviour
 {
     private Transform _transform;
     private float _speed = 5f;
-    private float _liftingHeight = 2f;
+    private float _timeExistence = 1.5f;
+    private float _timePassed = 0;
 
     private void Start() => _transform = transform;
 
@@ -17,7 +18,12 @@ public class Arrow : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x + _speed * Time.deltaTime,
-        transform.position.y + _liftingHeight * Mathf.Sin(transform.rotation.z * Mathf.PI / 180),
+        transform.position.y + Mathf.Sin(transform.rotation.z * Mathf.PI / 180),
         _transform.position.z);
+
+        if (_timeExistence < _timePassed)
+            Destroy(gameObject);
+
+        _timePassed = Time.deltaTime;
     }
 }

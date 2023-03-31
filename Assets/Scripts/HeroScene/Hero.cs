@@ -4,12 +4,13 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     [SerializeField] private HeroSO _heroSO;
+    [SerializeField] private UnitGamePositive _unitHero;
+
     private Sprite _spriteHero;
 
-
-    public string Name { get; private set; }
-
     public HeroSO HeroSO => _heroSO;
+    public string Name { get; private set; }
+    public UnitGamePositive UnitHero => _unitHero;
 
     private void Awake()
     {

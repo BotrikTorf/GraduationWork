@@ -1,9 +1,16 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonSummonArcher : ButtonSummon
 {
-    private void Awake() => Button = GetComponent<Button>();
+    private float _lerpDuration = 2.5f;
+
+    private void Awake()
+    {
+        ButtonComponent = GetComponent<Button>();
+        ImageButton = GetComponent<Image>();
+    }
 
     private void Start()
     {
@@ -13,7 +20,30 @@ public class ButtonSummonArcher : ButtonSummon
 
     protected override bool CanSummonedUnit()
     {
-        Debug.Log("Призвали лучника");
-        return true;
+        if (TextMoney.Instance.TakesMoney(CallCost))
+        {
+            StartCoroutine(Filing(_lerpDuration));
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private IEnumerator Filing(float duration)
+    {
+        ButtonComponent.interactable = false;
+        float elepsed = 0;
+
+        while (elepsed < duration)
+        {
+            ImageButton.fillAmount = elepsed / duration;
+            elepsed += Time.deltaTime;
+            yield return null;
+        }
+
+        ImageButton.fillAmount = 1;
+        ButtonComponent.interactable = true;
     }
 }

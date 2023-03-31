@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf9c207439468e44822fe778fd9314c, type: 3}
   m_Name: Achiles
   m_EditorClassIdentifier: 
-  _name: "\u0410\u0425\u0418\u041B\u0415\u0421"
+  _name: Achiles
   _image: {fileID: 21300000, guid: c7e14b13ca3282842a02e6bbf603ef2b, type: 3}
   _icon: {fileID: 21300000, guid: 0d445b275b058f54aadce8ccd0df2cf3, type: 3}
   _damage: 50

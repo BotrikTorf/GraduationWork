@@ -21,6 +21,7 @@ public class UnitSO : ScriptableObject
     public Sprite SpriteEndUnit => _spriteEndUnit;
     public Sprite[] SpritesImprovementLevel => _spritesImprovementLevel;
     public int MaxImprovement => _spritesImprovementLevel.Length;
+
     public int Damage => (int)(_initialDamage + _initialDamage * ((float)(_improvementLevel + 1) / MaxImprovement));
     public int Health => (int)(_initialHealth + _initialHealth * ((float)(_improvementLevel + 1) / MaxImprovement));
     public int Armor => _armor;

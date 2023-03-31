@@ -21,6 +21,7 @@ public class PanelHero : MonoBehaviour
     {
         _name.text = _heroes[1].Name;
         SubstitutionHero?.Invoke(_heroes[1].HeroSO);
+        ActiveHeroSave.SetActiveHero(_heroes[1].UnitHero);
     }
 
     private void OnEnable()
@@ -38,7 +39,7 @@ public class PanelHero : MonoBehaviour
     private void OnButtonClickSelectLeftHero()
     {
         InstallButtonSetActive(false);
-        _repleseCoroutine = StartCoroutine(
+        StartCoroutine(
             ChangesPlaces(_heroes[1].gameObject, 
                 _heroes[0].gameObject));
         tempHero = _heroes[0];
@@ -46,12 +47,13 @@ public class PanelHero : MonoBehaviour
         _heroes[1] = tempHero;
         _name.text = _heroes[1].Name;
         SubstitutionHero?.Invoke(_heroes[1].HeroSO);
+        ActiveHeroSave.SetActiveHero(_heroes[1].UnitHero);
     }
 
     private void OnButtonClickSelectRightHero()
     {
         InstallButtonSetActive(false);
-        _repleseCoroutine = StartCoroutine(
+         StartCoroutine(
             ChangesPlaces(_heroes[1].gameObject, 
                 _heroes[2].gameObject));
         tempHero = _heroes[2];
@@ -59,14 +61,15 @@ public class PanelHero : MonoBehaviour
         _heroes[1] = tempHero;
         _name.text = _heroes[1].Name;
         SubstitutionHero?.Invoke(_heroes[1].HeroSO);
+        ActiveHeroSave.SetActiveHero(_heroes[1].UnitHero);
     }
 
     private IEnumerator ChangesPlaces(GameObject heroShrinkable, GameObject heroExpandable)
     {
-        Vector3 startPosition = heroShrinkable.transform.position;
-        Vector3 endPosition = heroExpandable.transform.position;
-        Vector3 startScale = heroShrinkable.transform.localScale;
-        Vector3 endScale = heroExpandable.transform.localScale;
+        Vector2 startPosition = heroShrinkable.transform.position;
+        Vector2 endPosition = heroExpandable.transform.position;
+        Vector2 startScale = heroShrinkable.transform.localScale;
+        Vector2 endScale = heroExpandable.transform.localScale;
         float deltaPosition = 0;
 
         while (deltaPosition <= 1)
@@ -74,7 +77,7 @@ public class PanelHero : MonoBehaviour
             heroShrinkable.transform.position = Vector3.Lerp(startPosition, endPosition, deltaPosition);
             heroExpandable.transform.position = Vector3.Lerp(endPosition, startPosition, deltaPosition);
             heroShrinkable.transform.localScale = Vector3.Lerp(startScale, endScale, deltaPosition);
-            heroExpandable.transform.localScale = Vector3.Lerp(endScale,startScale, deltaPosition);
+            heroExpandable.transform.localScale = Vector3.Lerp(endScale, startScale, deltaPosition);
             deltaPosition += Time.deltaTime;
             yield return null;
         }
@@ -83,7 +86,6 @@ public class PanelHero : MonoBehaviour
         heroShrinkable.transform.position = endPosition;
         heroExpandable.transform.localScale = startScale;
         heroShrinkable.transform.localScale = endScale;
-        StopCoroutine(_repleseCoroutine);
         InstallButtonSetActive(true);
     }
 

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +5,7 @@ using UnityEngine.UI;
 public class ButtonGameReset : MonoBehaviour
 {
     private Button _buttonGameReset;
+
     private void Awake() => _buttonGameReset = GetComponent<Button>();
 
     private void OnEnable() => _buttonGameReset.onClick.AddListener(OnButtonClick);

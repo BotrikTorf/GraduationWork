@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf9c207439468e44822fe778fd9314c, type: 3}
   m_Name: Perseus
   m_EditorClassIdentifier: 
-  _name: "\u041F\u0415\u0420\u0421\u0415\u0419"
+  _name: Perseus
   _image: {fileID: 21300000, guid: cb311294d8a538745b52ab5aa8d7a3f6, type: 3}
   _icon: {fileID: 21300000, guid: 1422cbfc45958804e961b039adee77a7, type: 3}
   _damage: 50

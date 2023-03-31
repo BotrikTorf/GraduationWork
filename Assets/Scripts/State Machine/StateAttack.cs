@@ -3,6 +3,7 @@ public class StateAttack: States
 {
     private float _timeAttack = 2.1f;
     private bool _isAtack;
+    private float _deltaTime = 2f;
     public StateAttack(UnitGame unitGame)
     {
         AnimatorState = unitGame.Animator;
@@ -22,7 +23,7 @@ public class StateAttack: States
 
     public override void LogicUpdate()
     {
-        if (_timeAttack >= 2f)
+        if (_timeAttack >= _deltaTime)
         {
             AnimatorState.Play($"AnimationUnit{UnitGame.Name}Atack");
             _isAtack = true;

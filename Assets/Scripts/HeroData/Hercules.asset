@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf9c207439468e44822fe778fd9314c, type: 3}
   m_Name: Hercules
   m_EditorClassIdentifier: 
-  _name: "\u0413\u0415\u0420\u041A\u0423\u041B\u0415\u0421"
+  _name: Hercules
   _image: {fileID: 21300000, guid: 18522a719172c1a4981140a7b8382469, type: 3}
   _icon: {fileID: 21300000, guid: 45423813546010e4596bdd115ccce9aa, type: 3}
   _damage: 50

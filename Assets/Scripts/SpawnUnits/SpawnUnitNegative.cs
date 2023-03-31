@@ -8,8 +8,9 @@ public class SpawnUnitNegative : MonoBehaviour
 
     private float _timeSpawn = 1;
     private float _minTimeSpawn = 1;
-    private float _maxTimeSpawn = 5;
+    private float _maxTimeSpawn = 30;
     private float _timePassed = 0;
+    private int _moneySpawn = 20;
 
     private void Update()
     {
@@ -23,7 +24,10 @@ public class SpawnUnitNegative : MonoBehaviour
         _timePassed += Time.deltaTime;
     }
 
-    private void SpawnUnit() => 
-        Instantiate(_unitsNegatives[Random.Range(0, _unitsNegatives.Count)].gameObject, 
+    private void SpawnUnit()
+    {
+        TextMoney.Instance.AddMoney(_moneySpawn);
+        Instantiate(_unitsNegatives[Random.Range(0, _unitsNegatives.Count)].gameObject,
             _pointsSpawn[Random.Range(0, _pointsSpawn.Count)]);
+    }
 }
