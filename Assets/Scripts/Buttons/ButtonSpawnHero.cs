@@ -10,6 +10,7 @@ public class ButtonSpawnHero : MonoBehaviour
 {
     [SerializeField] private UnitGamePositive _defaultHero;
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private SpawnerUnitPositive _spawnerUnitPositive;
 
     private UnitGamePositive _activeUnit;
     private int _callCost = 250;
@@ -38,7 +39,7 @@ public class ButtonSpawnHero : MonoBehaviour
 
     private void OnButtonClick()
     {
-        if (TextMoney.Instance.TakesMoney(_callCost))
+        if (_spawnerUnitPositive.CanCreateUnit(_callCost))
         {
             StartCoroutine(Filing(_lerpDuration));
             SummonUnit?.Invoke(_activeUnit);

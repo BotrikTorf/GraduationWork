@@ -9,7 +9,7 @@ public class PointTargetEnemy : MonoBehaviour
     private GameObject _target;
     private List<GameObject> _enemy;
 
-    public event UnityAction<GameObject> TransferTarget;
+    public event UnityAction<GameObject> TransfedTarget;
 
     private void Start() => _enemy = new List<GameObject>();
 
@@ -42,7 +42,7 @@ public class PointTargetEnemy : MonoBehaviour
                 {
                     if (_enemy.Count == 0)
                     {
-                        TransferTarget?.Invoke(null);
+                        TransfedTarget?.Invoke(null);
                     }
                     else
                     {
@@ -58,7 +58,7 @@ public class PointTargetEnemy : MonoBehaviour
                             _target = _enemy[0];
                         }
 
-                        TransferTarget?.Invoke(_target);
+                        TransfedTarget?.Invoke(_target);
                     }
                 }
             }
@@ -74,13 +74,13 @@ public class PointTargetEnemy : MonoBehaviour
         if (_enemy.Count == 0)
         {
             _target = enemy;
-            TransferTarget?.Invoke(_target);
+            TransfedTarget?.Invoke(_target);
             _enemy.Add(enemy);
         }
         else if (!_target.TryGetComponent(out UnitGame player))
         {
             _target = enemy;
-            TransferTarget?.Invoke(_target);
+            TransfedTarget?.Invoke(_target);
             GameObject temp = _enemy[0];
             _enemy[0] = enemy;
             _enemy.Add(temp);

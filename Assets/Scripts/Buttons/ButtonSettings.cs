@@ -8,5 +8,5 @@ public class ButtonSettings : MonoBehaviour
 
     private void Awake() => _image = GetComponent<Image>();
 
-    void Start() => _image.alphaHitTestMinimumThreshold = 1f;
+    private void Start() => _image.alphaHitTestMinimumThreshold = 1f;
 }

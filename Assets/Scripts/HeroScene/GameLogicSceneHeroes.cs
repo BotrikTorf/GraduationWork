@@ -85,7 +85,6 @@ public class GameLogicSceneHeroes : MonoBehaviour
         }
     }
 
-
     private void ChangeSlider()
     {
         _sliderAttackPower.value = (float)_hero.DamageRatio / _hero.MaxValue;

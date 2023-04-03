@@ -6,26 +6,10 @@ public abstract class UnitGamePositive : UnitGame
 
     public Sprite Icon { get; private protected set; }
 
-
-    protected override bool CheckTarget(GameObject target)
-    {
-        if (target == null)
-        {
-            return true;
-        }
-        else if (target.TryGetComponent(out HouseUnits _))
-        {
-            return true;
-        }
-        else if (target.TryGetComponent(out UnitGamePositive _))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    protected override bool CheckTarget(GameObject target) =>
+        target == null || 
+        target.TryGetComponent(out HouseUnits _) || 
+        target.TryGetComponent(out UnitGamePositive _);
 
     protected override void OnDestroyUnit()
     {

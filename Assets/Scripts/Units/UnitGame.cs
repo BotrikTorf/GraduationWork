@@ -34,9 +34,9 @@ public abstract class UnitGame : MonoBehaviour
 
     public abstract void TakeShot(GameObject target);
 
-    private void OnEnable() => _pointTarget.TransferTarget += OnPointTarget;
+    private void OnEnable() => _pointTarget.TransfedTarget += OnPointTarget;
 
-    private void OnDisable() => _pointTarget.TransferTarget -= OnPointTarget;
+    private void OnDisable() => _pointTarget.TransfedTarget -= OnPointTarget;
 
     public void TakeDamage(int damage)
     {

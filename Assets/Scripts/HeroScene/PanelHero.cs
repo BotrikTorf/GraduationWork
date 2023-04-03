@@ -12,7 +12,6 @@ public class PanelHero : MonoBehaviour
     [SerializeField] private TMP_Text _name;
     [SerializeField] private List<Hero> _heroes;
 
-    private Coroutine _repleseCoroutine;
     private Hero tempHero;
 
     public event UnityAction<HeroSO> SubstitutionHero;

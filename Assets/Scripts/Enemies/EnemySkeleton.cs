@@ -32,14 +32,5 @@ public class EnemySkeleton : UnitGameNegative
 
     public override void Move() => transform.Translate(Direction * Speed * Time.deltaTime, Space.World);
 
-    protected override int OnDamaged(int damage) => damage - Armor > 0 ? damage - Armor : 0;
-
-    public override void TakeShot(GameObject target)
-    {
-        if (target.TryGetComponent(out UnitGame enemy))
-            enemy.TakeDamage(Damage);
-
-        if (target.TryGetComponent(out House house))
-            house.TakeDamage(Damage);
-    }
+    protected override int OnDamaged(int damage) => Mathf.Clamp(damage - Armor, 0, damage);
 }

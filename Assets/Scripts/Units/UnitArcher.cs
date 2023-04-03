@@ -32,7 +32,7 @@ public class UnitArcher : UnitGamePositive
 
     public override void Move() => transform.Translate(Direction * Speed * Time.deltaTime, Space.World);
 
-    protected override int OnDamaged(int damage) => damage - Armor > 0 ? damage - Armor : 0;
+    protected override int OnDamaged(int damage) => Mathf.Clamp(damage - Armor, 0, damage);
 
     public override void TakeShot(GameObject target)
     {

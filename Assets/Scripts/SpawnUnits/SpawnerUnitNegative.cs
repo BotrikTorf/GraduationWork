@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class SpawnUnitNegative : MonoBehaviour
+public class SpawnerUnitNegative : MonoBehaviour
 {
     [SerializeField] private List<Transform> _pointsSpawn;
     [SerializeField] private List<UnitGameNegative> _unitsNegatives;
@@ -11,6 +12,8 @@ public class SpawnUnitNegative : MonoBehaviour
     private float _maxTimeSpawn = 30;
     private float _timePassed = 0;
     private int _moneySpawn = 20;
+
+    public static event UnityAction<int> Created;
 
     private void Update()
     {
@@ -26,7 +29,7 @@ public class SpawnUnitNegative : MonoBehaviour
 
     private void SpawnUnit()
     {
-        TextMoney.Instance.AddMoney(_moneySpawn);
+        Created?.Invoke(_moneySpawn);
         Instantiate(_unitsNegatives[Random.Range(0, _unitsNegatives.Count)].gameObject,
             _pointsSpawn[Random.Range(0, _pointsSpawn.Count)]);
     }
